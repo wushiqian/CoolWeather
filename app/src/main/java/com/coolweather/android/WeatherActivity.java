@@ -64,9 +64,6 @@ public class WeatherActivity extends AppCompatActivity {
 
     private TextView sportText;
 
-    private String mWeatherId;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +102,7 @@ public class WeatherActivity extends AppCompatActivity {
             // 无缓存时去服务器查询天气
             weatherId = getIntent().getStringExtra("weather_id");
             weatherLayout.setVisibility(View.INVISIBLE);
-            requestWeather(mWeatherId);
+            requestWeather(weatherId);
         }
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -146,7 +143,6 @@ public class WeatherActivity extends AppCompatActivity {
                                     WeatherActivity.this).edit();
                             editor.putString("weather", responseText);
                             editor.apply();
-//                            mWeatherId = weather.basic.weatherId;
                             showWeatherInfo(weather);
                         } else {
                             Toast.makeText(WeatherActivity.this, "获取天气信息失败",
